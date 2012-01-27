@@ -14,7 +14,7 @@ bot = Cinch::Bot.new do
 
     @game = false
     @players = []
-    @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_']
+    @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_', 'ChrisH']
     @cleverbot = Cleverbot::Client.new
   end
 
@@ -104,14 +104,6 @@ bot = Cinch::Bot.new do
 
   on :message, /\ dump\ / do |m|
     m.reply "tee hee hee" if Random.new.rand(0..2) == 0
-  end
-
-  on :message, /[K|k]obs|[H|h]erndon/ do |m|
-    case Random.new.rand(0..2)
-    when 0 then m.reply "monkey suit?"
-    when 1 then m.reply "business, lol"
-    when 2 then m.reply "keep that guy away from playgrounds and schools... "
-    end
   end
 
   on :message, /foosbot/ do |m|
