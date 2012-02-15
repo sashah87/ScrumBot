@@ -18,6 +18,11 @@ bot = Cinch::Bot.new do
     @cleverbot = Cleverbot::Client.new
   end
 
+  on :join do |m|
+    greetings = ['bam a lam', 'cocaine is a hell of a gem', '...'].shuffle
+    m.reply greetings.first if m.user.nick == bot.nick
+  end
+
   on :message, "!foos" do |m|
 
     if not @game
@@ -75,7 +80,7 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /\ rod/ do |m|
-    m.reply "That's what she said lol" if Random.new.rand(0..3) == 0
+    m.reply "That's what she said lol" if Random.new.rand(0..2) == 0
   end
 
   on :message, /nope/ do |m|
@@ -100,10 +105,6 @@ bot = Cinch::Bot.new do
 
   on :message, /jitterbit/ do |m|
     m.reply "*snap* *snap*" if Random.new(0..1) == 0
-  end
-
-  on :message, /\ dump\ / do |m|
-    m.reply "tee hee hee" if Random.new.rand(0..2) == 0
   end
 
   on :message, /foosbot/ do |m|
@@ -131,10 +132,6 @@ _-_-_-_-_-_-_-\"\"  \"\"      "
 
   on :message, /desk\ flip|deskflip|flip\ a\ desk/ do |m|
     m.reply "（╯°□°）╯︵ ┻━┻"
-  end
-
-  on :message, /why/ do |m|
-    m.reply "42" if Random.new.rand(0..2) == 0
   end
 end
 
