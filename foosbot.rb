@@ -15,15 +15,20 @@ bot = Cinch::Bot.new do
     @game = false
     @players = []
     @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_', 'ChrisH']
+    @sicklist = []
     @cleverbot = Cleverbot::Client.new
   end
 
   on :join do |m|
-    greetings = ['bam a lam', 'cocaine is a hell of a gem', '...'].shuffle
+    greetings = ['bam a lam', 'cocaine is a hell of a gem', '...', 'these pringles are making me thirsty'].shuffle
     m.reply greetings.first if m.user.nick == bot.nick
   end
 
   on :message, "!foos" do |m|
+    if @sicklist.include? m.user.nick
+      m.reply "#{m.user.nick}: Sorry no sick players allowed."
+      return nil
+    end
 
     if not @game
       #if Random.new.rand(0..6) == 0
