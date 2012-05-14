@@ -5,17 +5,19 @@ require 'cleverbot'
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.jlatt.com"
-    c.port = 6697
+    c.port = 9999
     c.nick = 'foosbot'
-    c.password = 'smellyoulater'
+    c.password = 'foosball'
     c.ssl = true
     #c.channels = ["#foosbot-test"]
-    c.channels = ["#verticalbrands foosball", "#foosbot-test"]
+    #c.channels = ["#verticalbrands foosball", "#foosbot-test"]
+    c.channels = ["#verticalbrands", "#foosbot-test"]
 
     @game = false
     @players = []
     @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_', 'ChrisH']
     @sicklist = []
+    @brolist = []
     @cleverbot = Cleverbot::Client.new
   end
 
@@ -27,6 +29,11 @@ bot = Cinch::Bot.new do
   on :message, "!foos" do |m|
     if @sicklist.include? m.user.nick
       m.reply "#{m.user.nick}: Sorry no sick players allowed."
+      return nil
+    end
+
+    if @brolist.include? m.user.nick
+      m.reply "#{m.user.nick}: Nah, you're too bro'd out brah."
       return nil
     end
 
