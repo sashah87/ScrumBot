@@ -9,7 +9,7 @@ bot = Cinch::Bot.new do
     c.nick = 'foosbot'
     c.password = 'foosball'
     c.ssl = true
-    #c.channels = ["#foosbot-test"]
+    #c.channels = ["#foosbot-test2"]
     #c.channels = ["#verticalbrands foosball", "#foosbot-test"]
     c.channels = ["#verticalbrands", "#foosbot-test"]
 
@@ -17,7 +17,7 @@ bot = Cinch::Bot.new do
     @players = []
     @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_', 'ChrisH']
     @sicklist = []
-    @brolist = []
+    @brolist = ['Jake']
     @cleverbot = Cleverbot::Client.new
   end
 
@@ -37,6 +37,7 @@ bot = Cinch::Bot.new do
       return nil
     end
 
+
     if not @game
       #if Random.new.rand(0..6) == 0
       #  m.reply "I'm sorry Dave, I'm afriad I can't do that." if Random.new.rand(0..3) == 0
@@ -45,11 +46,31 @@ bot = Cinch::Bot.new do
       m.reply "#{m.user.nick} wants to start a game, who's in? Type !foos to join."
       players = m.channel.users.keys.map(&:nick) - @blacklist
       m.reply "#{players.join(', ')} ^"
+
       @game = true
-      @players << m.user.nick
+
+      if m.user.nick == 'akbk'
+        if @players.count < 3
+          @players << 'Andy' << 'Ben' if @players.count < 3
+        else
+          @players << 'Ben||Andy' if @players.count == 3
+        end
+      else
+        @players << m.user.nick
+      end
     else
       m.reply "#{m.user.nick} joined the game."
-      @players << m.user.nick
+
+      if m.user.nick == 'akbk'
+        if @players.count < 3
+          @players << 'Andy' << 'Ben' if @players.count < 3
+        else
+          @players << 'Ben||Andy' if @players.count == 3
+        end
+      else
+        @players << m.user.nick
+      end
+
       if @players.count < 4
         m.reply "#{4 - @players.count} players still needed.  Current players: #{@players.join(', ')}"
       else
