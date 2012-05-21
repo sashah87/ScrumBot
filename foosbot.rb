@@ -78,7 +78,7 @@ bot = Cinch::Bot.new do
         @players = []
         @game = false
         case Random.new.rand(0..6)
-        when 0 then m.reply "kthxbye"
+        when 0 then m.reply "kthxbai"
         when 1 then m.reply "Hiyooooo!"
         when 2 then m.reply "I'm a personality prototype, you can tell can't you?"
         when 3 then m.reply "Life? Don't talk to me about life."
