@@ -9,9 +9,9 @@ bot = Cinch::Bot.new do
     c.nick = 'foosbot'
     c.password = 'foosball'
     c.ssl = true
-    #c.channels = ["#foosbot-test2"]
+    c.channels = ["#foosbot-test3"]
     #c.channels = ["#verticalbrands foosball", "#foosbot-test"]
-    c.channels = ["#verticalbrands", "#foosbot-test"]
+    #c.channels = ["#verticalbrands", "#foosbot-test"]
 
     @game = false
     @players = []
@@ -19,6 +19,48 @@ bot = Cinch::Bot.new do
     @sicklist = []
     @brolist = ['Jake']
     @cleverbot = Cleverbot::Client.new
+
+    @cool_names = 
+      ["Slab Bulkhead",
+       "Fridge Largemeat",
+       "Punt Speedchunk",
+       "Butch Deadlift",
+       "Bold Bigflank",
+       "Splint Chesthair",
+       "Flint Ironstag",
+       "Bolt Vanderhuge",
+       "Thick McRunfast",
+       "Blast Hardcheese",
+       "Buff Drinklots",
+       "Trunk Slamchest",
+       "Fist Rockbone",
+       "Stump Beefgnaw",
+       "Smash Lampjaw",
+       "Punch Rockgroin",
+       "Buck Plankchest",
+       "Stump Chunkman",
+       "Dirk Hardpeck",
+       "Rip Steakface",
+       "Slate Slabrock",
+       "Crud Bonemeal",
+       "Brick Hardmeat",
+       "Rip Sidecheek",
+       "Punch Sideiron",
+       "Gristle McThornBody",
+       "Slake Fistcrunch",
+       "Buff Hardback",
+       "Bob Johnson",
+       "Blast Thickneck",
+       "Crunch Buttsteak",
+       "Slab Squatthrust",
+       "Lump Beefrock",
+       "Touch Rustrod",
+       "Reef Blastbody",
+       "Big McLargeHuge",
+       "Smoke Manmuscle",
+       "Beat Punchbeef",
+       "Pack Blowfist",
+       "Roll Fizzlebeef"]
   end
 
   on :join do |m|
@@ -43,7 +85,10 @@ bot = Cinch::Bot.new do
       #  m.reply "I'm sorry Dave, I'm afriad I can't do that." if Random.new.rand(0..3) == 0
       #  return nil
       #end
-      m.reply "#{m.user.nick} wants to start a game, who's in? Type !foos to join."
+
+      name = @cool_names[Random.new.rand(0..@cool_names.size-1)]
+
+      m.reply "#{m.user.nick} aka #{name} wants to start a game, who's in? Type !foos to join."
       players = m.channel.users.keys.map(&:nick) - @blacklist
       m.reply "#{players.join(', ')} ^"
 
