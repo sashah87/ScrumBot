@@ -9,9 +9,9 @@ bot = Cinch::Bot.new do
     c.nick = 'foosbot'
     c.password = 'foosball'
     c.ssl = true
-    c.channels = ["#foosbot-test3"]
+    #c.channels = ["#foosbot-test3"]
     #c.channels = ["#verticalbrands foosball", "#foosbot-test"]
-    #c.channels = ["#verticalbrands", "#foosbot-test"]
+    c.channels = ["#verticalbrands", "#foosbot-test"]
 
     @game = false
     @players = []
