@@ -17,7 +17,7 @@ bot = Cinch::Bot.new do
     @players = []
     @blacklist = ['foosbot', 'matt', 'matt_', 'Kyle', 'Kyle_', 'ChrisH']
     @sicklist = []
-    @brolist = ['Jake']
+    @brolist = []
     @cleverbot = Cleverbot::Client.new
 
     @cool_names = 
@@ -122,7 +122,7 @@ bot = Cinch::Bot.new do
         m.reply "game ready: #{@players.join(', ')}"
         @players = []
         @game = false
-        case Random.new.rand(0..6)
+        case Random.new.rand(0..7)
         when 0 then m.reply "kthxbai"
         when 1 then m.reply "Hiyooooo!"
         when 2 then m.reply "I'm a personality prototype, you can tell can't you?"
@@ -130,6 +130,7 @@ bot = Cinch::Bot.new do
         when 4 then m.reply "I'd make a suggestion, but you wouldn't listen.  No one ever does."
         when 5 then m.reply "I've calculated your chance of survival, but i don't think you'll like it."
         when 6 then m.reply "This will all end in tears."
+        when 7 then m.reply "jenkins-bot: die in a fire"
         end
       end
     end
